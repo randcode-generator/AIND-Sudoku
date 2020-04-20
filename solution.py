@@ -57,11 +57,12 @@ def naked_twins(values):
     """
     out = values.copy()
     for boxA in values:
-        for boxB in peers[boxA]:
-            if(len(values[boxA]) == 2 and values[boxA] == values[boxB]):
-                for peer in peers[boxA].intersection(peers[boxB]):
-                    for digit in values[boxA]:
-                        out[peer] = out[peer].replace(digit, '')
+        if(len(values[boxA]) == 2):
+            for boxB in peers[boxA]:
+                if(values[boxA] == values[boxB]):
+                    for peer in peers[boxA].intersection(peers[boxB]):
+                        for digit in values[boxA]:
+                            out[peer] = out[peer].replace(digit, '')
     return out
 
 
